@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <title>Users List</title>
+    <link th:href="@{/styles.css}" rel="stylesheet" />
+</head>
+<body>
+
+<div class="container">
+    <header class="header">
+        <h1>Users List</h1>
+    </header>
+    <nav class="navigation-bar">
+        <ul>
+            <li><a href="/new">Create New User</a></li>
+            <li><a href="/list-user">User List</a></li>
+        </ul>
+    </nav>
+    <br/><br/>
+    <section class="main-section">
+        <article class="text--justified">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th><a href="/list-user-sort-id">User ID</a></th>
+                        <th><a href="/list-user-sort-firstname">First name</a></th>
+                        <th><a href="/list-user-sort-lastname">Last Name</a></th>
+                        <th><a href="/list-user-sort-email">E-mail</a></th>
+                        <th><a href="/list-user-sort-upn">UPN</a></th>
+                        <th><a href="/list-user-sort-country">Country</a></th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+
+                <tbody id="tableBody">
+                    <tr th:each="user : ${userList}">
+                        <td th:text="${user.id}">User ID</td>
+                        <td th:text="${user.firstName}">First name</td>
+                        <td th:text="${user.lastName}">Last name</td>
+                        <td th:text="${user.email}">E-mail</td>
+                        <td th:text="${user.uniquePersonNumber}">UPN</td>
+                        <td th:text="${user.country}">Country</td>
+                        <td><a th:href="@{'/edit/' + ${user.id}}">Edit</a></td>
+                        <td><a th:href="@{'/delete/' + ${user.id}}">Delete</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </article>
+    </section>
+</div>
+</body>
+</html>
